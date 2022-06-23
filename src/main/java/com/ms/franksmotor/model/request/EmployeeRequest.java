@@ -1,7 +1,5 @@
 package com.ms.franksmotor.model.request;
 
-import java.time.LocalDateTime;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,7 +21,7 @@ public class EmployeeRequest {
 	
 	private String phone;
 	
-	private LocalDateTime dateBirth;
+	private String dateBirth;
 	
 	private String password;
 	

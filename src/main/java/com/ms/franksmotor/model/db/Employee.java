@@ -43,7 +43,7 @@ public class Employee {
 	private String phone;
 	
 	@Column(name = "date_birth")
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDateTime dateBirth;
 	
 	@OneToOne

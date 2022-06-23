@@ -19,7 +19,7 @@ public class EmailRestController {
     @PostMapping("/send")
     public ResponseEntity<String> sendEmail(@RequestBody MailRequest mail) {
         mailService.sendEmail("Servicio de Atencion: " + mail.getSubject(), 
-                mail.getText(), mail.getToUser());
+                mail.getText(), mail.getName(), mail.getToUser());
         return ResponseEntity.ok("Enviado");
     }
 }

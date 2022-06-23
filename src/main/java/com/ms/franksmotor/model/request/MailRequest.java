@@ -17,4 +17,6 @@ public class MailRequest {
     
     private String toUser;
     
+    private String name;
+    
 }

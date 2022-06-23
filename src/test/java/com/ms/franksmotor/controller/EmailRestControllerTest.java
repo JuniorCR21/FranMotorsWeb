@@ -5,12 +5,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-@SpringBootTest
-@AutoConfigureWebTestClient
-class MailControllerTest {
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@AutoConfigureWebTestClient(timeout = "20000")
+class EmailRestControllerTest {
 
     @Autowired
     private WebTestClient webClient;
@@ -19,9 +20,9 @@ class MailControllerTest {
     void sendMailTest() {
         MailRequest request = new MailRequest();
         request.setSubject("Vehiculo Listo!");
-        request.setText("Usuario su vehiculo ya se encuentra listo para el recojo");
+        request.setText("Su vehiculo ya se encuentra listo para el recojo");
         request.setToUser("juniorcr2198@gmail.com");
-    //when(advertisingService.findAdvertisingByDocumentNumberOrProductId(DOCUMENT_NUMBER, PRODUCT_ID)).thenReturn(response);
+        request.setName("Junior Carrión");
         this.webClient.post()
             .uri("/franksmotor/v1/email/send")
             .accept(MediaType.APPLICATION_JSON)

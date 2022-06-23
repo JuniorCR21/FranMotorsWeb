@@ -19,6 +19,7 @@ class UtilTest {
 	void createUsernameTest() {
 	    String name = "Junior";
 	    String surname = "Carrion Rodriguez";
+	    System.out.println(Utils.createUsername(name, surname));
 	    assertEquals("jcarrior", Utils.createUsername(name, surname));
 	}
 }
