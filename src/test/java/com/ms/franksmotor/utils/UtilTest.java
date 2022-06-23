@@ -14,4 +14,11 @@ class UtilTest {
 		assertEquals(false, Utils.validPassword(passwordError));
 		assertEquals(true, Utils.validPassword(passwordSuccess));
 	}
+	
+	@Test
+	void createUsernameTest() {
+	    String name = "Junior";
+	    String surname = "Carrion Rodriguez";
+	    assertEquals("jcarrior", Utils.createUsername(name, surname));
+	}
 }
