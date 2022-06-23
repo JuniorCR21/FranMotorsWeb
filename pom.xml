@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.ms.franksmotor</groupId>
 	<artifactId>admin-franksmotor</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<name>ms-admin-franksmotor</name>
 	<description>Api Rest for Web System Frank's Motor</description>
 	<properties>
@@ -59,6 +59,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
 		<!--dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
