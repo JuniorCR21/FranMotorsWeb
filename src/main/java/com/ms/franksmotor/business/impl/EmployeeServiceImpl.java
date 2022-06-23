@@ -8,6 +8,10 @@ import com.ms.franksmotor.model.request.EmployeeRequest;
 import com.ms.franksmotor.model.response.EmployeeResponse;
 import com.ms.franksmotor.repository.EmployeeRepository;
 import com.ms.franksmotor.utils.Utils;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -44,6 +48,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public EmployeeResponse findById(int id) {
+	    Optional<Employee> employee = employeeRepository.findById(id);
+	    if (employee.isPresent()) {
+	        return new EmployeeResponse(employee.get().getId(),employee.get().getUser().getId(),
+                    employee.get().getName(), employee.get().getSurname(), employee.get().getDni(),
+                    employee.get().getEmail(), employee.get().getPhone(), employee.get().getDateBirth(),
+                    employee.get().getUser().getUsername(), employee.get().getUser().getStatus(),
+                    employee.get().getUser().getRole(), employee.get().getUser().getAccountLocked() >= 3);
+	    }
 		return null;
 	}
 
@@ -52,12 +64,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 	    Optional<User> user = userService.createUser(Utils.createUsername(request.getName(), 
 	            request.getSurname()), request.getPassword(), request.getRole());
 	    if (user.isPresent()) {
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	        LocalDate date = LocalDate.parse(request.getDateBirth(), formatter);
 	        Employee employee = new Employee();
 	        employee.setUser(user.get());
 	        employee.setName(request.getName());
 	        employee.setSurname(request.getSurname());
 	        employee.setDni(request.getDni());
-	        employee.setDateBirth(request.getDateBirth());
+	        employee.setDateBirth(LocalDateTime.of(date, LocalTime.of(0, 0)));
 	        employee.setEmail(request.getEmail());
 	        employee.setPhone(request.getPhone());
 	        employee = employeeRepository.save(employee);
